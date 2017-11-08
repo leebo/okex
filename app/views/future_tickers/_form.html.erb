@@ -1,0 +1,72 @@
+<%= form_with(model: future_ticker, local: true) do |form| %>
+  <% if future_ticker.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(future_ticker.errors.count, "error") %> prohibited this future_ticker from being saved:</h2>
+
+      <ul>
+      <% future_ticker.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :high %>
+    <%= form.text_field :high, id: :future_ticker_high %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vol %>
+    <%= form.text_field :vol, id: :future_ticker_vol %>
+  </div>
+
+  <div class="field">
+    <%= form.label :day_high %>
+    <%= form.text_field :day_high, id: :future_ticker_day_high %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last %>
+    <%= form.text_field :last, id: :future_ticker_last %>
+  </div>
+
+  <div class="field">
+    <%= form.label :low %>
+    <%= form.text_field :low, id: :future_ticker_low %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contract_id %>
+    <%= form.number_field :contract_id, id: :future_ticker_contract_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :buy %>
+    <%= form.text_field :buy, id: :future_ticker_buy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sell %>
+    <%= form.text_field :sell, id: :future_ticker_sell %>
+  </div>
+
+  <div class="field">
+    <%= form.label :coin_vol %>
+    <%= form.text_field :coin_vol, id: :future_ticker_coin_vol %>
+  </div>
+
+  <div class="field">
+    <%= form.label :day_low %>
+    <%= form.text_field :day_low, id: :future_ticker_day_low %>
+  </div>
+
+  <div class="field">
+    <%= form.label :unit_amount %>
+    <%= form.text_field :unit_amount, id: :future_ticker_unit_amount %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

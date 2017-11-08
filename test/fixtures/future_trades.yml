@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 1
+  date_ms: 1
+  amount: 1.5
+  price: 1.5
+  type: 
+  tid: 1
+
+two:
+  date: 1
+  date_ms: 1
+  amount: 1.5
+  price: 1.5
+  type: 
+  tid: 1

@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>High:</strong>
+  <%= @future_ticker.high %>
+</p>
+
+<p>
+  <strong>Vol:</strong>
+  <%= @future_ticker.vol %>
+</p>
+
+<p>
+  <strong>Day high:</strong>
+  <%= @future_ticker.day_high %>
+</p>
+
+<p>
+  <strong>Last:</strong>
+  <%= @future_ticker.last %>
+</p>
+
+<p>
+  <strong>Low:</strong>
+  <%= @future_ticker.low %>
+</p>
+
+<p>
+  <strong>Contract:</strong>
+  <%= @future_ticker.contract_id %>
+</p>
+
+<p>
+  <strong>Buy:</strong>
+  <%= @future_ticker.buy %>
+</p>
+
+<p>
+  <strong>Sell:</strong>
+  <%= @future_ticker.sell %>
+</p>
+
+<p>
+  <strong>Coin vol:</strong>
+  <%= @future_ticker.coin_vol %>
+</p>
+
+<p>
+  <strong>Day low:</strong>
+  <%= @future_ticker.day_low %>
+</p>
+
+<p>
+  <strong>Unit amount:</strong>
+  <%= @future_ticker.unit_amount %>
+</p>
+
+<%= link_to 'Edit', edit_future_ticker_path(@future_ticker) %> |
+<%= link_to 'Back', future_tickers_path %>
