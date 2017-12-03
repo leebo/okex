@@ -1,12 +1,3 @@
 first_job:
-  cron: "/10 * * * * *"
-  class: "BtcUsdWorker"
-second_job:
-  cron: "/10 * * * * *"
-  class: "LtcUsdWorker"
-third_job:
-  cron: "/10 * * * * *"
-  class: "EtcUsdWorker"
-fourth_job:
-  cron: "/10 * * * * *"
-  class: "EthUsdWorker"
+  cron: "*/1 * * * *"
+  class: "TickerAllWorker"

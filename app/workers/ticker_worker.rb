@@ -1,9 +1,10 @@
-class BtcUsdWorker
+class TickerWorker
   include Sidekiq::Worker
 
-  def perform()
+  def perform(symbol, contract_type)
   	okex = Okexapi.new("d00ae24b-bf00-4dd6-814e-002af896f76e", "D198F90F2B76E6EFBC48A98FA3CB8A1D")
-    future_ticker = okex.future_ticker("btc_usd", "this_week")
+    future_ticker = okex.future_ticker(symbol, contract_type)
+    FutureTicker.create(date: future_ticker["date"], last: future_ticker["ticker"]["last"], buy: future_ticker["ticker"]["buy"], sell: future_ticker["ticker"]["sell"], high: future_ticker["ticker"]["high"], low: future_ticker["ticker"]["low"], vol: future_ticker["ticker"]["vol"], contract_id: future_ticker["ticker"]["contract_id"], unit_amount: future_ticker["ticker"]["unit_amount"], symbol: symbol, contract_type: contract_type)
     # future_depth = okex.future_depth("btc_usd", "this_week")
     # future_trades = okex.future_trades("btc_usd", "this_week")
     # future_index = okex.future_index("btc_usd")
@@ -12,7 +13,6 @@ class BtcUsdWorker
     # future_kline = okex.future_kline("btc_usd", "1min", "this_week")
     # future_hold_amount = okex.future_hold_amount("btc_usd", "this_week")
     # future_price_limit = okex.future_price_limit("btc_usd", "this_week")
-    FutureTicker.create(date: future_ticker["date"], last: future_ticker["ticker"]["last"], buy: future_ticker["ticker"]["buy"], sell: future_ticker["ticker"]["sell"], high: future_ticker["ticker"]["high"], low: future_ticker["ticker"]["low"], vol: future_ticker["ticker"]["vol"], contract_id: future_ticker["ticker"]["contract_id"], unit_amount: future_ticker["ticker"]["unit_amount"], symbol: "btc_usd", contract_type: "this_week")
     # FutureDepth.create(asks: future_depth["asks"], bids: future_depth["bids"], symbol: "btc_usd", contract_type: "this_week")
     # FutureTrade.create(trade: future_trades, symbol: "btc_usd", contract_type: "this_week")
     # FutureIndex.create(future_index: future_index, symbol: "btc_usd")
