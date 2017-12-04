@@ -1,5 +1,6 @@
 class TickerWorker
   include Sidekiq::Worker
+  sidekiq_options :retry => false # job will be discarded immediately if failed
 
   def perform(symbol, contract_type)
   	okex = Okexapi.new("d00ae24b-bf00-4dd6-814e-002af896f76e", "D198F90F2B76E6EFBC48A98FA3CB8A1D")
