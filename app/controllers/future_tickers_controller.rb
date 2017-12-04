@@ -4,7 +4,8 @@ class FutureTickersController < ApplicationController
   # GET /future_tickers
   # GET /future_tickers.json
   def index
-    @future_tickers = FutureTicker.all
+    #@future_tickers = FutureTicker.all
+    @future_tickers = $influxdb.query "select * from ticker where contract_type='#{params[:contract_type]}' and symbol='#{params[:symbol]}'"
   end
 
   # GET /future_tickers/1
