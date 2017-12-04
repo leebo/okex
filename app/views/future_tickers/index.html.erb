@@ -23,25 +23,18 @@
   <tbody>
     <% @future_tickers.each do |future_ticker| %>
       <tr>
-        <td><%= future_ticker.date %></td>
-        <td><%= future_ticker.last %></td>
-        <td><%= future_ticker.buy %></td>
-        <td><%= future_ticker.sell %></td>
-        <td><%= future_ticker.high %></td>
-        <td><%= future_ticker.low %></td>
-        <td><%= future_ticker.vol %></td>
-        <td><%= future_ticker.contract_id %></td>
-        <td><%= future_ticker.unit_amount %></td>
-        <td><%= future_ticker.symbol %></td>
-        <td><%= future_ticker.contract_type %></td>
-        <td><%= link_to 'Show', future_ticker %></td>
-        <td><%= link_to 'Edit', edit_future_ticker_path(future_ticker) %></td>
-        <td><%= link_to 'Destroy', future_ticker, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= future_ticker["time"] %></td>
+        <td><%= future_ticker["last"] %></td>
+        <td><%= future_ticker["buy"] %></td>
+        <td><%= future_ticker["sell"] %></td>
+        <td><%= future_ticker["high"] %></td>
+        <td><%= future_ticker["low"] %></td>
+        <td><%= future_ticker["vol"] %></td>
+        <td><%= future_ticker["contract_id"] %></td>
+        <td><%= future_ticker["unit_amount"] %></td>
+        <td><%= future_ticker["symbol"] %></td>
+        <td><%= future_ticker["contract_type"] %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Future Ticker', new_future_ticker_path %>
