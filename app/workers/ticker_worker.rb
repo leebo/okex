@@ -3,9 +3,15 @@ class TickerWorker
   sidekiq_options :retry => false # job will be discarded immediately if failed
 
   def perform(symbol, contract_type)
-  	okex = Okexapi.new("d00ae24b-bf00-4dd6-814e-002af896f76e", "D198F90F2B76E6EFBC48A98FA3CB8A1D")
+    okex = Okexapi.new("d00ae24b-bf00-4dd6-814e-002af896f76e", "D198F90F2B76E6EFBC48A98FA3CB8A1D")
     future_ticker = okex.future_ticker(symbol, contract_type)
-    FutureTicker.create(date: future_ticker["date"], last: future_ticker["ticker"]["last"], buy: future_ticker["ticker"]["buy"], sell: future_ticker["ticker"]["sell"], high: future_ticker["ticker"]["high"], low: future_ticker["ticker"]["low"], vol: future_ticker["ticker"]["vol"], contract_id: future_ticker["ticker"]["contract_id"], unit_amount: future_ticker["ticker"]["unit_amount"], symbol: symbol, contract_type: contract_type)
+    data = {
+      values: { last: future_ticker["ticker"]["last"], buy: future_ticker["ticker"]["buy"], sell: future_ticker["ticker"]["sell"], high: future_ticker["ticker"]["high"], low: future_ticker["ticker"]["low"], vol: future_ticker["ticker"]["vol"], contract_id: future_ticker["ticker"]["contract_id"], unit_amount: future_ticker["ticker"]["unit_amount"]},
+      tags:   { symbol: symbol, contract_type: contract_type  } # tags are optional
+    }
+    $influxdb.write_point("ticker", data)
+
+    # FutureTicker.create(date: future_ticker["date"], last: future_ticker["ticker"]["last"], buy: future_ticker["ticker"]["buy"], sell: future_ticker["ticker"]["sell"], high: future_ticker["ticker"]["high"], low: future_ticker["ticker"]["low"], vol: future_ticker["ticker"]["vol"], contract_id: future_ticker["ticker"]["contract_id"], unit_amount: future_ticker["ticker"]["unit_amount"], symbol: symbol, contract_type: contract_type)
     # future_depth = okex.future_depth("btc_usd", "this_week")
     # future_trades = okex.future_trades("btc_usd", "this_week")
     # future_index = okex.future_index("btc_usd")
