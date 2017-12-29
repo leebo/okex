@@ -6,17 +6,17 @@ class TickerWorker
     okex = Okexapi.new("d00ae24b-bf00-4dd6-814e-002af896f76e", "D198F90F2B76E6EFBC48A98FA3CB8A1D")
     future_ticker = okex.future_ticker(symbol, contract_type)
     data = {
-      values: { last: future_ticker["ticker"]["last"],
-                buy: future_ticker["ticker"]["buy"],
-                sell: future_ticker["ticker"]["sell"],
-                high: future_ticker["ticker"]["high"],
-                low: future_ticker["ticker"]["low"],
-                vol: future_ticker["ticker"]["vol"],
+      values: { last: future_ticker["ticker"]["last"].to_f,
+                buy: future_ticker["ticker"]["buy"].to_f,
+                sell: future_ticker["ticker"]["sell"].to_f,
+                high: future_ticker["ticker"]["high"].to_f,
+                low: future_ticker["ticker"]["low"].to_f,
+                vol: future_ticker["ticker"]["vol"].to_f,
                 contract_id: future_ticker["ticker"]["contract_id"],
-                unit_amount: future_ticker["ticker"]["unit_amount"]
+                unit_amount: future_ticker["ticker"]["unit_amount"].to_f
       },
       tags: { symbol: symbol, contract_type: contract_type }, # tags are optional
-      time_precision: future_ticker["ticker"]["date"]
+      time_precision: future_ticker["date"]
     }
     $influxdb.write_point("ticker", data)
 
